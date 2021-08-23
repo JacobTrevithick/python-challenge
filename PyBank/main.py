@@ -25,7 +25,6 @@ with open(budget_data_csv, 'r') as csv_file:
     
     budget_data = csv.reader(csv_file, delimiter = ',') 
 
-    # total_months = len(list(budget_data)) - 1
     total_months = 0
     net_profit = 0
     profit_list = []
@@ -44,6 +43,7 @@ with open(budget_data_csv, 'r') as csv_file:
 profit_changes = get_changes(profit_list)
 avg_change = round(average(profit_changes), 2)
 
+#Terminal printing
 print("Financial Analysis")
 print("-" * 30)
 print(f"Total Months: {total_months}")
@@ -51,3 +51,17 @@ print(f"Total: ${net_profit}")
 print(f"Average Change: ${avg_change}")
 print(f"Greatest Increase in Profits: {month_list[profit_changes.index(max(profit_changes)) + 1]} (${max(profit_changes)})")
 print(f"Greatest Decrease in Profits: {month_list[profit_changes.index(min(profit_changes)) + 1]} (${min(profit_changes)})")
+
+financial_analysis_file = os.path.join("analysis", 'Financial_Analysis.txt')
+
+with open(financial_analysis_file, 'w') as txt_file:
+    
+    txt_file.write("Financial Analysis\n")
+    txt_file.write("---------------------------------------\n")
+    txt_file.write(f"Total Months: {total_months}\n")
+    txt_file.write(f"Total: ${net_profit}\n")
+    txt_file.write(f"Average Change: ${avg_change}\n")
+    txt_file.write(f"Greatest Increase in Profits: {month_list[profit_changes.index(max(profit_changes)) + 1]} (${max(profit_changes)})\n")
+    txt_file.write(f"Greatest Decrease in Profits: {month_list[profit_changes.index(min(profit_changes)) + 1]} (${min(profit_changes)})")
+
+    txt_file.close()
