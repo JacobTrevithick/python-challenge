@@ -14,27 +14,30 @@ with open(poll_csv, 'r') as csv_file:
     #skip header row
     csv_header = next(poll_data, None)
 
+    #initialize total vote count and candidate dictionary used to store candidate information
     total_votes = 0
     cand_dict = {}
 
+    #cycle through each vote in dataset
     for row in poll_data:
-        
+        #count total votes
         total_votes += 1
 
+        #check if current candidate is not in cand_dict, if not then add name to list with 1 vote, else add 1 votes to existing total
         if row[2] not in cand_dict:
             cand_dict[row[2]] = [1]
         else:
             cand_dict[row[2]][0] += 1
 
-    # for loop doing two things: finding the winner and calc'ing/adding the percentage of votes to candidate dict
+# for loop doing two things: finding the winner and calc'ing/adding the percentage of votes to candidate dict
 
 winner_total = 0
 for candidate in cand_dict:
-    
+    #check if current candidate total is greater than stored winner_total, if so update winner's name and winner total
     if cand_dict[candidate][0] > winner_total:
         winner_total = cand_dict[candidate][0]
         winner = candidate
-    
+    #calculate total votes percentage and append to candidate vote info list
     cand_percent = float(cand_dict[candidate][0]/total_votes) * 100
     cand_dict[candidate].append(cand_percent)
 
@@ -53,7 +56,7 @@ print(f"Winner: {winner}")
 print("-" * 30)
 
 
-#creating financial analysis text file 
+#creating election results text file 
 election_results = os.path.join("analysis", 'election_results.txt')
 
 with open(election_results, 'w') as txt_file:
