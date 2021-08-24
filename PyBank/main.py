@@ -52,23 +52,35 @@ with open(budget_data_csv, 'r') as csv_file:
         month_list.append(row[0])
         profit_list.append(int(row[1]))
 
-#calc profit changes from month-to-month using get_changes function
-#average those changes and round to 2 decimal places
+'''
+calc profit changes from month-to-month using get_changes function
+average those changes and round to 2 decimal places
+Month corresponding to greatest increase and decrease are found by retrieving the index of the max/min profit change and corresponding that to the month_list.
+'''
+
 profit_changes = get_changes(profit_list)
 avg_change = round(average(profit_changes), 2)
+
+max_profit_val = max(profit_changes)
+max_profit_month = month_list[profit_changes.index(max_profit_val) + 1]
+
+min_profit_val = min(profit_changes)
+min_profit_month = month_list[profit_changes.index(min_profit_val) + 1]
+
 
 '''
 Terminal Printing:
 Month corresponding to greatest increase and decrease are found by retrieving the index of the max/min profit change and corresponding that to the month_list. 
 Note: month_list index must be +1 because profit change not calc'd for first month.
 '''
+
 print("Financial Analysis")
 print("-" * 30)
 print(f"Total Months: {total_months}")
 print(f"Total: ${net_profit}")
 print(f"Average Change: ${avg_change}")
-print(f"Greatest Increase in Profits: {month_list[profit_changes.index(max(profit_changes)) + 1]} (${max(profit_changes)})")
-print(f"Greatest Decrease in Profits: {month_list[profit_changes.index(min(profit_changes)) + 1]} (${min(profit_changes)})")
+print(f"Greatest Increase in Profits: {max_profit_month} (${max_profit_val})")
+print(f"Greatest Decrease in Profits: {min_profit_month} (${min_profit_val})")
 
 
 #creating financial analysis text file 
@@ -83,7 +95,7 @@ with open(financial_analysis_file, 'w') as txt_file:
     txt_file.write(f"Total Months: {total_months}\n")
     txt_file.write(f"Total: ${net_profit}\n")
     txt_file.write(f"Average Change: ${avg_change}\n")
-    txt_file.write(f"Greatest Increase in Profits: {month_list[profit_changes.index(max(profit_changes)) + 1]} (${max(profit_changes)})\n")
-    txt_file.write(f"Greatest Decrease in Profits: {month_list[profit_changes.index(min(profit_changes)) + 1]} (${min(profit_changes)})")
+    txt_file.write(f"Greatest Increase in Profits: {max_profit_month} (${max_profit_val})\n")
+    txt_file.write(f"Greatest Decrease in Profits: {min_profit_month} (${min_profit_val})")
 
     txt_file.close()
