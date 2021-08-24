@@ -15,7 +15,7 @@ def get_changes(num_list):
 
     Take the difference between the current and previous value in list, and append that to a new 'change_list'. Does not calculate for very first number in the list
 
-    Code adapted from Kite online coding resource:
+    Code adapted from Kite online coding resource and from in class example:
     https://www.kite.com/python/answers/how-to-access-previous-and-next-values-when-looping-through-a-list-in-python#:~:text=Use%20enumerate()%20to%20access,list%5Bindex%2D1%5D%20.
     '''
     change_list = []
