@@ -2,10 +2,10 @@
 import os
 import csv
 
-#creating budget_data_csv file object
+#creating election_data.csv file path
 poll_csv = os.path.join("Resources", 'election_data.csv')
 
-#open budget file object as csv file
+#open election file as csv file
 with open(poll_csv, 'r') as csv_file:
     
     #create csv reader object to iterate through months
