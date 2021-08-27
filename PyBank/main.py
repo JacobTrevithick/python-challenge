@@ -53,12 +53,11 @@ with open(budget_data_csv, 'r') as csv_file:
         profit_list.append(int(row[1]))
 
 '''
-calc profit changes from month-to-month using get_changes function
+calc profit changes from month-to-month using get_changes function.
 average those changes and round to 2 decimal places
 Month corresponding to greatest increase and decrease are found by retrieving the index of the max/min profit change and corresponding that to the month_list.
+Note: month_list index must be +1 because profit change not calc'd for first month.
 '''
-
-
 
 profit_changes = get_changes(profit_list)
 avg_change = round(average(profit_changes), 2)
@@ -72,8 +71,6 @@ min_profit_month = month_list[profit_changes.index(min_profit_val) + 1]
 
 '''
 Terminal Printing:
-Month corresponding to greatest increase and decrease are found by retrieving the index of the max/min profit change and corresponding that to the month_list. 
-Note: month_list index must be +1 because profit change not calc'd for first month.
 '''
 
 print("Financial Analysis")
