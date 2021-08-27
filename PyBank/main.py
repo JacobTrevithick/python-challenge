@@ -58,6 +58,8 @@ average those changes and round to 2 decimal places
 Month corresponding to greatest increase and decrease are found by retrieving the index of the max/min profit change and corresponding that to the month_list.
 '''
 
+
+
 profit_changes = get_changes(profit_list)
 avg_change = round(average(profit_changes), 2)
 
